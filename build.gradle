@@ -22,9 +22,4 @@ sourceSets {
 		options.compilerArgs.addAll(project.propBasedJavaFlags)
 		source = sourceSets.main.java
 	}
-	/*
-    jar {
-	    from compileJava.destinationDir
-	}
-	*/
 
