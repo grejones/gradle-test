@@ -1,0 +1,30 @@
+import java.nio.file.Files;
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+ext {  // add these to project to use for constants
+	propBasedJavaFlags = ["-encoding","UTF-8","-g","-deprecation","-implicit:none","-proc:none","-target","1.5","-source","1.5"]
+}
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src'] 
+			  include '**/*.java'
+			  output.classesDir = file('output/src')
+		}
+	}
+}
+
+    compileJava {
+		//destinationDir=file('output/src')
+		options.incremental = true
+		options.compilerArgs.addAll(project.propBasedJavaFlags)
+		source = sourceSets.main.java
+	}
+	/*
+    jar {
+	    from compileJava.destinationDir
+	}
+	*/
+

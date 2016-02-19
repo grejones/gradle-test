@@ -1,0 +1,25 @@
+import java.nio.file.Files;
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['../src2'] 
+			include '**/*.java'
+                output.classesDir = file('../output/src2')
+		}
+	}
+}
+
+    compileJava {
+		//destinationDir=file('../output/src2')
+		options.incremental = true
+		options.compilerArgs.addAll(project.propBasedJavaFlags)
+		source = sourceSets.main.java
+		dependencies {
+			 compile files('../output/src')
+	    }
+	}
+
